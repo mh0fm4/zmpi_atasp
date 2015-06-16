@@ -1,0 +1,37 @@
+2015-06-16
+
+  * New release version 1.0.4 (first release on github.com/mh0fm4/zmpi_atasp)
+  * Use MPI_Status and MPI_Get_elements to return the number of received data elements (if MPI version 3.0 is used, otherwise use ZMPI_Status and ZMPI_Get_elements)
+  * Fix wrong name in license headers
+  * Minor fixes
+
+
+2014-05-28
+
+  * New release version 1.0.3
+  * Add new implementation variants based on MPI_Alltoallw, non-blocking point-to-point communication, and one-sided communication
+  * Support selection of implementation variants with global variables ZMPI_Alltoall_specific_type and ZMPI_Neighbor_alltoall_specific_type
+  * Change interface of tprocs and tprocs_mod distribution function (return the number of duplicates with a separate output parameter)
+  * Use MPI_Count as integer type for the distribution functions (if MPI version 3.0 is used, otherwise use ZMPI_Count)
+  * Add tproc_mod usage to the demo program
+  * Start (internal) support for target location functions (tloc) and add algorithms for local permutation of data elements with tloc and tlocs
+  * Add ZMPI_Neighbor_alltoall_specific conforming to the neighborhood collectives of MPI version 3.0
+  * Change interface of ZMPI_Tproc_set_neighbors and ZMPI_Tproc_set_proclists
+  * Fix memory leak in ZMPI_Tproc_free
+  * Minor fixes
+
+
+2013-03-22
+
+  * New release version 1.0.2
+  * Include a (more) self-contained zmpi_atasp.h header (-Izmpi_local/ -DHAVE_ZMPI_LOCAL_H is still required!)
+  * Add neighbor communication with ZMPI_Tproc_set_proclists (or ZMPI_Tproc_set_neighbors)
+  * Add tproc_mod distribution function format (i.e., single target process with modified data element)
+  * Change data type of ZMPI_Count from int to long
+  * Add ZMPI_TPROC_RESET_NULL, should be used for Tproc constructors if no reset function is required
+  * Add zmpi_atasp_rename.h and support renaming of all exposed (function and variable) names by defining ZMPI_PREFIX macro
+  * Prefix all external (but hidden) macros and typdefs with "zmpi_"
+  * Fix "redefinition of typedef" (detected by clang)
+
+
+Initial release version 1.0.1

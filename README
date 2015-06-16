@@ -1,0 +1,36 @@
+ZMPI-ATASP -- ZMPI All-to-all Specific Library
+
+
+Overview
+--------
+The ZMPI-ATASP library provides a new collective communication operation for performing a more fine-grained all-to-all data redistribution.
+While the MPI standard all-to-all operation 'MPI_Alltoallv' allows to exchange only blocks of consecutive data elements between processes, the new fine-grained operations 'ZMPI_Alltoall_specific' allows to send each data element to an individual process.
+This is achieved by accepting a user-defined distribution function the returns the target process for each data element.
+A distribution function has to be specified in form of an object of type 'ZMPI_Tproc' that was previously created using one of the 'ZMPI_Tproc_create_...' functions.
+Function 'ZMPI_Tproc_free' has to be used to deallocate a distribution function object.
+Several implementation variants of the new communication operation as well as an earlier version of its interface can be found in:
+
+  M. Hofmann and G. Rünger: Fine-grained Data Distribution Operations for Particle Codes.
+  In: Recent Advances in Parallel Virtual Machine and Message Passing Interface, 16th European PVM/MPI Users Group Meeting, pg. 54-63. Springer, 2009.
+
+
+Usage
+-----
+1. Use 'make' to create the library archive 'libzmpi_atasp.a' containing the ZMPI-ATASP library.
+   Edit file 'Makefile' to modify compiler and options.
+
+2. File 'zmpi_atasp.h' provides interface definitions of the library functions.
+
+3. Use 'make demo' to create a short demo program 'specific_demo'.
+   The source code of the demo is located in directory 'demo' and demonstrates the usage of the new fine-grained data redistribution operation 'ZMPI_Alltoall_specific'.
+
+
+Namespace
+---------
+Since the definitions of this library are not part of the MPI standard, the prefix 'ZMPI_' is used for all non-standard extensions.
+
+
+Datatype limitations
+--------------------
+The current implementation uses the lower bounds and extents of the specified MPI datatypes to copy/move data elements in memory (using memcpy/memmove operations).
+Thus, sparse datatypes with wholes are not supported and can lead to undefined behavior.
