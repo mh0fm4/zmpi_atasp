@@ -43,10 +43,10 @@
 #endif /* ZMPI_RENAME */
 
 
-/* alltoall_2step.c */
+/* zmpi_alltoall_2step.c */
 #define ZMPI_Alltoall_2step_int  ZMPI_FUNC(ZMPI_Alltoall_2step_int)
 
-/* alltoall_int.c */
+/* zmpi_alltoall_int.c */
 #define ZMPI_Alltoall_int_alltoall  ZMPI_FUNC(ZMPI_Alltoall_int_alltoall)
 #define ZMPI_Alltoall_int_2step  ZMPI_FUNC(ZMPI_Alltoall_int_2step)
 #define ZMPI_Alltoall_int_put  ZMPI_FUNC(ZMPI_Alltoall_int_put)
@@ -62,7 +62,7 @@
 #define ZMPI_Alltoall_int_proclists_put_2phases  ZMPI_FUNC(ZMPI_Alltoall_int_proclists_put_2phases)
 #define ZMPI_Alltoall_int_proclists_put_2phases_alloc  ZMPI_FUNC(ZMPI_Alltoall_int_proclists_put_2phases_alloc)
 
-/* alltoallx_proclists.c */
+/* zmpi_alltoallx_proclists.c */
 #define ZMPI_Alltoall_proclists_isendirecv  ZMPI_FUNC(ZMPI_Alltoall_proclists_isendirecv)
 #define ZMPI_Alltoall_proclists  ZMPI_FUNC(ZMPI_Alltoall_proclists)
 #define ZMPI_Alltoallv_proclists_isendirecv  ZMPI_FUNC(ZMPI_Alltoallv_proclists_isendirecv)
@@ -70,10 +70,10 @@
 #define ZMPI_Alltoallw_proclists_isendirecv  ZMPI_FUNC(ZMPI_Alltoallw_proclists_isendirecv)
 #define ZMPI_Alltoallw_proclists  ZMPI_FUNC(ZMPI_Alltoallw_proclists)
 
-/* reduce_scatter_block.c */
+/* zmpi_reduce_scatter_block.c */
 #define ZMPI_Reduce_scatter_block  ZMPI_FUNC(ZMPI_Reduce_scatter_block)
 
-/* reduce_scatter_block_intsum.c */
+/* zmpi_reduce_scatter_block_intsum.c */
 #define ZMPI_Reduce_scatter_block_intsum_accumulate  ZMPI_FUNC(ZMPI_Reduce_scatter_block_intsum_accumulate)
 #define ZMPI_Reduce_scatter_block_intsum_proclists_isendirecv  ZMPI_FUNC(ZMPI_Reduce_scatter_block_intsum_proclists_isendirecv)
 #define ZMPI_Reduce_scatter_block_intsum_proclists_alltoallv  ZMPI_FUNC(ZMPI_Reduce_scatter_block_intsum_proclists_alltoallv)

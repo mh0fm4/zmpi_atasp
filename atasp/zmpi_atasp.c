@@ -143,6 +143,8 @@ int ZMPI_Tproc_set_proclists(ZMPI_Tproc tproc, int ndstprocs, int *dstprocs, int
 
 int ZMPI_Get_elements(const ZMPI_Status *status, MPI_Datatype datatype, int *count)
 {
+  if (status == ZMPI_STATUS_IGNORE) return MPI_ERR_ARG;
+
   *count = *status;
 
   return MPI_SUCCESS;
@@ -266,9 +268,9 @@ static int _ZMPI_Alltoall_specific(void *sbuf, int scount, MPI_Datatype stype, v
 exit:
 
 #if MPI_VERSION >= 3
-  MPI_Status_set_elements(status, rtype, received);
+  if (status != MPI_STATUS_IGNORE) MPI_Status_set_elements(status, rtype, received);
 #else
-  *status = received;
+  if (status != ZMPI_STATUS_IGNORE) *status = received;
 #endif
 
   return exit_code;

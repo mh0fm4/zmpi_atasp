@@ -1,3 +1,9 @@
+2015-??-??
+
+  * Define alternative MPI version 3.0 features (ZMPI_Count, ZMPI_Status, ...) even if MPI version 3.0 is used (to allow a seamless switch from non-3.0 to 3.0)
+  * Allow MPI_STATUS_IGNORE to be used if the number of received data elements is not requested (if MPI version 3.0 is used, otherwise use ZMPI_STATUS_IGNORE)
+
+
 2015-06-16
 
   * New release version 1.0.4 (first release on github.com/mh0fm4/zmpi_atasp)
