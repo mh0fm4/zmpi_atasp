@@ -2,6 +2,7 @@
 
   * Update copyright year
   * Update z_pack tools
+  * Fix missing renaming of ZMPI_Get_elements
 
 2015-10-24
 

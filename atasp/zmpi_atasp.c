@@ -141,7 +141,7 @@ int ZMPI_Tproc_set_proclists(ZMPI_Tproc tproc, int ndstprocs, int *dstprocs, int
 
 #if MPI_VERSION < 3
 
-int ZMPI_Get_elements(const ZMPI_Status *status, MPI_Datatype datatype, int *count)
+int ZMPI_Get_elements(const ZMPI_Status *status, MPI_Datatype datatype, int *count) /* zmpi_func ZMPI_Get_elements */
 {
   if (status == ZMPI_STATUS_IGNORE) return MPI_ERR_ARG;
 
