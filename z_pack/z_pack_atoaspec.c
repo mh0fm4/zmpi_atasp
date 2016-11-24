@@ -18,7 +18,7 @@
  */
 
 
-/* _XOPEN_SOURCE >= 500 required for nftw */
+/* _XOPEN_SOURCE >= 500 required for nftw, lstat */
 /* _XOPEN_SOURCE >= 600 required for vsscanf */
 #define _XOPEN_SOURCE 600
 
@@ -642,7 +642,7 @@ z_int_t z_fs_is_link(const char *pathname) /* z_proto, z_func z_fs_is_link */
   struct stat s;
 
 
-  if (stat(pathname, &s) != 0) return 0;
+  if (lstat(pathname, &s) != 0) return 0;
 
   return S_ISLNK(s.st_mode)?1:0;
 }
@@ -656,6 +656,41 @@ z_int_t z_fs_get_file_size(const char *pathname) /* z_proto, z_func z_fs_get_fil
   if (stat(pathname, &s) != 0) return -1;
 
   return (z_int_t) s.st_size;
+}
+
+
+#if HAVE_UNISTD_H
+
+#include <unistd.h>
+
+
+z_int_t z_fs_get_link_target(const char *pathname, char *target, z_int_t size) /* z_proto, z_func z_fs_get_link_target */
+{
+  ssize_t n = readlink(pathname, target, size);
+
+  if (n < 0) return -1;
+
+  if (n < size) target[n] = '\0';
+
+  return n;
+}
+
+#endif /* HAVE_UNISTD_H */
+
+
+z_int_t z_fs_stat(const char *pathname, z_fs_stat_t *stat)
+{
+  struct stat s;
+
+
+  if (lstat(pathname, &s) != 0) return 0;
+
+  stat->is_directory = S_ISDIR(s.st_mode)?1:0;
+  stat->is_file = S_ISREG(s.st_mode)?1:0;
+  stat->is_link = S_ISLNK(s.st_mode)?1:0;
+  stat->file_size = (z_int_t) s.st_size;
+
+  return 1;
 }
 
 
