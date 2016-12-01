@@ -94,10 +94,12 @@ void z_mpi_get_grid4d(int *dims, int *pos);
 #define z_abs(_a_)                (((_a_) >= 0)?(_a_):-(_a_))
 #define z_swap(_a_, _b_, _t_)     do { (_t_) = (_a_); (_a_) = (_b_); (_b_) = (_t_); } while (0)
 
-#ifdef __cplusplus
-# include <cmath>
-#else
-# include <math.h>
+#if HAVE_MATH_H
+# ifdef __cplusplus
+#  include <cmath>
+# else
+#  include <math.h>
+# endif
 #endif
 
 #if defined(HAVE_ROUND) || (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
@@ -137,7 +139,7 @@ void z_mpi_get_grid4d(int *dims, int *pos);
 
 #ifdef Z_PACK_DEBUG
 
-#if HAVE_STDIO_H
+#if HAVE_STDIO_H || STDC_HEADERS
 # ifdef __cplusplus
 #  include <cstdio>
 # else
@@ -250,7 +252,7 @@ extern FILE *z_notice_fstream, *z_error_fstream, *z_debug_fstream;
 
 #ifdef Z_PACK_ALLOC
 
-#if HAVE_STDLIB_H
+#if HAVE_STDLIB_H || STDC_HEADERS
 # ifdef __cplusplus
 #  include <cstdlib>
 # else
@@ -381,7 +383,7 @@ Z_DECLARE_FUNCTION_END
 # define Z_TIMING_PRINT_PREFIX                    "TIMING: "
 #endif
 
-#if HAVE_STDIO_H
+#if HAVE_STDIO_H || STDC_HEADERS
 # ifdef __cplusplus
 #  include <cstdio>
 # else
@@ -420,7 +422,7 @@ Z_DECLARE_FUNCTION_END
 # undef Z_RAND_MIN
 # undef Z_RAND_MAX
 # if defined(HAVE_RANDOM) && !defined(__STRICT_ANSI__)
-#  if HAVE_STDLIB_H
+#  if HAVE_STDLIB_H || STDC_HEADERS
 #   ifdef __cplusplus
 #    include <cstdlib>
 #   else
@@ -432,7 +434,7 @@ Z_DECLARE_FUNCTION_END
 #  define z_srand(_s_)  srandom(_s_)
 #  define z_rand()      random()
 # elif defined(HAVE_RAND)
-#  if HAVE_STDLIB_H
+#  if HAVE_STDLIB_H || STDC_HEADERS
 #   ifdef __cplusplus
 #    include <cstdlib>
 #   else
@@ -563,7 +565,7 @@ Z_DECLARE_FUNCTION_END
 
 #ifdef Z_PACK_STDIO
 
-#if HAVE_STDIO_H
+#if HAVE_STDIO_H || STDC_HEADERS
 #  ifdef __cplusplus
 #   include <cstdio>
 #  else
