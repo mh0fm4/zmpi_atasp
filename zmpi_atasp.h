@@ -1221,6 +1221,9 @@ int ZMPI_Get_elements(const ZMPI_Status *status, MPI_Datatype datatype, int *cou
 # define ZMPI_STATUS_IGNORE  NULL
 #else
 typedef MPI_Status ZMPI_Status;
+# ifdef ZMPI_Get_elements
+#  undef ZMPI_Get_elements  /* undefine renaming macro */
+# endif
 # define ZMPI_Get_elements   MPI_Get_elements
 # define ZMPI_STATUS_IGNORE  MPI_STATUS_IGNORE
 #endif
