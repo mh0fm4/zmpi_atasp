@@ -10,7 +10,7 @@ A distribution function has to be specified in form of an object of type 'ZMPI_T
 Function 'ZMPI_Tproc_free' has to be used to deallocate a distribution function object.
 Several implementation variants of the new communication operation as well as an earlier version of its interface can be found in:
 
-  M. Hofmann and G. Rünger: Fine-grained Data Distribution Operations for Particle Codes.
+  M. Hofmann and G. RÃ¼nger: Fine-grained Data Distribution Operations for Particle Codes.
   In: Recent Advances in Parallel Virtual Machine and Message Passing Interface, 16th European PVM/MPI Users Group Meeting, pg. 54-63. Springer, 2009.
 
 

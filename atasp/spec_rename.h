@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2012, 2013, 2014, 2015, 2016 Michael Hofmann, Chemnitz University of Technology
+ *  Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Michael Hofmann, Chemnitz University of Technology
  *  
  *  This file is part of the ZMPI All-to-all Specific Library.
  *  
@@ -61,6 +61,7 @@
 #define spec_prefix_counts  SP_FUNC(spec_prefix_counts)
 
 /* spec_core.c */
+#define nspec_timings  SP_VAR(nspec_timings)
 #define spec_timing  SP_VAR(spec_timing)
 #define spec_tproc_create  SP_FUNC(spec_tproc_create)
 #define spec_tproc_destroy  SP_FUNC(spec_tproc_destroy)

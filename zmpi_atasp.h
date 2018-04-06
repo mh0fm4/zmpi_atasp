@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2012, 2013, 2014, 2015, 2016 Michael Hofmann, Chemnitz University of Technology
+ *  Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Michael Hofmann, Chemnitz University of Technology
  *  
  *  This file is part of the ZMPI All-to-all Specific Library.
  *  
@@ -1200,6 +1200,7 @@ int ZMPI_Tproc_free(ZMPI_Tproc *tproc);
 
 int ZMPI_Tproc_set_neighbors(ZMPI_Tproc tproc, int nneighbors, int *neighbors, MPI_Comm comm);
 int ZMPI_Tproc_set_proclists(ZMPI_Tproc tproc, int ndstprocs, int *dstprocs, int nsrcprocs, int *srcprocs, MPI_Comm comm);
+int ZMPI_Tproc_set_counts(ZMPI_Tproc tproc, int *sendcounts, int *recvcounts, MPI_Comm comm);
 
 #define ZMPI_ALLTOALL_SPECIFIC_TYPE_ALLTOALLV    0
 #define ZMPI_ALLTOALL_SPECIFIC_TYPE_ALLTOALLW    1
@@ -1221,9 +1222,7 @@ int ZMPI_Get_elements(const ZMPI_Status *status, MPI_Datatype datatype, int *cou
 # define ZMPI_STATUS_IGNORE  NULL
 #else
 typedef MPI_Status ZMPI_Status;
-# ifdef ZMPI_Get_elements
-#  undef ZMPI_Get_elements  /* undefine renaming macro */
-# endif
+# undef ZMPI_Get_elements  /* undefine renaming macro */
 # define ZMPI_Get_elements   MPI_Get_elements
 # define ZMPI_STATUS_IGNORE  MPI_STATUS_IGNORE
 #endif

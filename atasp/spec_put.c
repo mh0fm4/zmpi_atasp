@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2012, 2013, 2014, 2015, 2016 Michael Hofmann, Chemnitz University of Technology
+ *  Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Michael Hofmann, Chemnitz University of Technology
  *  
  *  This file is part of the ZMPI All-to-all Specific Library.
  *  
@@ -265,8 +265,9 @@ exit:
   Z_TIMING_PRINT(0, __func__, sizeof(t) / sizeof(t[0]), t, rank);
 
 #if defined(Z_PACK_TIMING) && defined(SPEC_TIMING)
+  nspec_timings = sizeof(t) / sizeof(t[0]);
   if (spec_timing)
-    for (i = 0; i < sizeof(t) / sizeof(t[0]); ++i) spec_timing[i] = t[i];
+    for (i = 0; i < nspec_timings; ++i) spec_timing[i] = t[i];
 #endif
 
   return exit_code;

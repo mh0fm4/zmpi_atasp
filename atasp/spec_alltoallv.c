@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2012, 2013, 2014, 2015, 2016 Michael Hofmann, Chemnitz University of Technology
+ *  Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Michael Hofmann, Chemnitz University of Technology
  *  
  *  This file is part of the ZMPI All-to-all Specific Library.
  *  
@@ -103,7 +103,7 @@ spint_t spec_alltoallv_db(spec_elem_t *sb, spec_elem_t *rb, spec_elem_t *xb, spe
   /* redistribute local counts */
   Z_TIMING_SYNC(comm); Z_TIMING_START(t[2]);
 
-  spec_redistribute_counts(scounts, rcounts,
+  spec_redistribute_counts(tproc, scounts, rcounts,
 #ifdef SPEC_PROCLISTS
     tproc->nsend_procs, tproc->send_procs, tproc->nrecv_procs, tproc->recv_procs,
 #endif
@@ -211,8 +211,9 @@ exit:
   Z_TIMING_PRINT(0, __func__, sizeof(t) / sizeof(t[0]), t, rank);
 
 #if defined(Z_PACK_TIMING) && defined(SPEC_TIMING)
+  nspec_timings = sizeof(t) / sizeof(t[0]);
   if (spec_timing)
-    for (i = 0; i < sizeof(t) / sizeof(t[0]); ++i) spec_timing[i] = t[i];
+    for (i = 0; i < nspec_timings; ++i) spec_timing[i] = t[i];
 #endif
 
   return exit_code;
@@ -293,7 +294,7 @@ spint_t spec_alltoallv_ip(spec_elem_t *b, spec_elem_t *xb, spec_tproc_t tproc, s
   /* redistribute local counts */
   Z_TIMING_SYNC(comm); Z_TIMING_START(t[2]);
 
-  spec_redistribute_counts(scounts, rcounts,
+  spec_redistribute_counts(tproc, scounts, rcounts,
 #ifdef SPEC_PROCLISTS
     tproc->nsend_procs, tproc->send_procs, tproc->nrecv_procs, tproc->recv_procs,
 #endif
@@ -492,8 +493,9 @@ exit:
   Z_TIMING_PRINT(0, __func__, sizeof(t) / sizeof(t[0]), t, rank);
 
 #if defined(Z_PACK_TIMING) && defined(SPEC_TIMING)
+  nspec_timings = sizeof(t) / sizeof(t[0]);
   if (spec_timing)
-    for (i = 0; i < sizeof(t) / sizeof(t[0]); ++i) spec_timing[i] = t[i];
+    for (i = 0; i < nspec_timings; ++i) spec_timing[i] = t[i];
 #endif
 
   return exit_code;

@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2012, 2013, 2014, 2015, 2016 Michael Hofmann, Chemnitz University of Technology
+ *  Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Michael Hofmann, Chemnitz University of Technology
  *  
  *  This file is part of the ZMPI All-to-all Specific Library.
  *  
@@ -107,9 +107,9 @@ int ZMPI_Tproc_free(ZMPI_Tproc *tproc) /* zmpi_func ZMPI_Tproc_free */
 
 int ZMPI_Tproc_set_neighbors(ZMPI_Tproc tproc, int nneighbors, int *neighbors, MPI_Comm comm) /* zmpi_func ZMPI_Tproc_set_neighbors */
 {
+#ifdef SPEC_PROCLISTS
   int comm_size, comm_rank;
 
-#ifdef SPEC_PROCLISTS
   MPI_Comm_size(comm, &comm_size);
   MPI_Comm_rank(comm, &comm_rank);
 
@@ -124,13 +124,30 @@ int ZMPI_Tproc_set_neighbors(ZMPI_Tproc tproc, int nneighbors, int *neighbors, M
 
 int ZMPI_Tproc_set_proclists(ZMPI_Tproc tproc, int ndstprocs, int *dstprocs, int nsrcprocs, int *srcprocs, MPI_Comm comm) /* zmpi_func ZMPI_Tproc_set_proclists */
 {
+#ifdef SPEC_PROCLISTS
   int comm_size, comm_rank;
 
-#ifdef SPEC_PROCLISTS
   MPI_Comm_size(comm, &comm_size);
   MPI_Comm_rank(comm, &comm_rank);
 
   spec_tproc_set_proclists(tproc, ndstprocs, dstprocs, nsrcprocs, srcprocs, comm_size, comm_rank, comm);
+
+  return MPI_SUCCESS;
+#else
+  return 1;
+#endif
+}
+
+
+int ZMPI_Tproc_set_counts(ZMPI_Tproc tproc, int *sendcounts, int *recvcounts, MPI_Comm comm) /* zmpi_func ZMPI_Tproc_set_counts */
+{
+#ifdef SPEC_PROCLISTS
+  int comm_size, comm_rank;
+
+  MPI_Comm_size(comm, &comm_size);
+  MPI_Comm_rank(comm, &comm_rank);
+
+  spec_tproc_set_counts(tproc, sendcounts, recvcounts, comm_size, comm_rank, comm);
 
   return MPI_SUCCESS;
 #else

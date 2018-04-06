@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2012, 2013, 2014, 2015, 2016 Michael Hofmann, Chemnitz University of Technology
+ *  Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Michael Hofmann, Chemnitz University of Technology
  *  
  *  This file is part of the ZMPI All-to-all Specific Library.
  *  
@@ -62,7 +62,7 @@ extern spint_t spec_redistribute_counts_type, spec_redistribute_counts_proclists
 #define SPEC_REDISTRIBUTE_COUNTS_PROCLISTS_PUT_2PHASES        6
 #define SPEC_REDISTRIBUTE_COUNTS_PROCLISTS_PUT_2PHASES_ALLOC  7
 
-spint_t spec_redistribute_counts(int *scounts, int *rcounts,
+spint_t spec_redistribute_counts(spec_tproc_t tproc, int *scounts, int *rcounts,
 #ifdef SPEC_PROCLISTS
   spint_t nsend_procs, sproc_t *send_procs, spint_t nrecv_procs, sproc_t *recv_procs,
 #endif

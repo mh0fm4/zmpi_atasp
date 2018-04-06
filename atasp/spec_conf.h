@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2012, 2013, 2014, 2015, 2016 Michael Hofmann, Chemnitz University of Technology
+ *  Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Michael Hofmann, Chemnitz University of Technology
  *  
  *  This file is part of the ZMPI All-to-all Specific Library.
  *  
@@ -152,7 +152,9 @@
 
 #define SPEC_PROCLISTS
 
-#define SPEC_TIMING
+#define SPEC_COUNTS
+
+/*#define SPEC_TIMING*/
 /*#define SPEC_TIMING_PRINT*/
 
 #ifdef SPEC_TIMING

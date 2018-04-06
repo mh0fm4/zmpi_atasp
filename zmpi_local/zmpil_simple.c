@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2012, 2013, 2014, 2015, 2016 Michael Hofmann, Chemnitz University of Technology
+ *  Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Michael Hofmann, Chemnitz University of Technology
  *  
  *  This file is part of the ZMPI All-to-all Specific Library.
  *  
@@ -28,7 +28,7 @@ int zmpil_simple_create_derived(zmpil_simple_t *mpil, MPI_Datatype type, int cou
 {
 /*  mpil->type = type;*/
 
-  Z_TRACE("zmpil_simple_create_derived");
+/*  Z_TRACE("zmpil_simple_create_derived");*/
 
   MPI_Type_get_true_extent(type, &mpil->true_lb, &mpil->true_extent);
 

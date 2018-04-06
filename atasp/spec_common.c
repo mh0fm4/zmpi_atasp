@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2012, 2013, 2014, 2015, 2016 Michael Hofmann, Chemnitz University of Technology
+ *  Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Michael Hofmann, Chemnitz University of Technology
  *  
  *  This file is part of the ZMPI All-to-all Specific Library.
  *  
@@ -214,6 +214,16 @@ spint_t spec_make_counts(spec_tproc_t tproc, spec_tproc_data_t tproc_data, spec_
   SPEC_DECLARE_TPROCS_COUNT_IP
   SPEC_DECLARE_TPROCS_MOD_COUNT_IP
 
+  Z_TRACE_IF(SPEC_COMMON_TRACE_IF, "spec_make_counts");
+
+#ifdef SPEC_COUNTS
+  if (tproc->send_counts)
+  {
+    memcpy(counts, tproc->send_counts, size * sizeof(int));
+    return 0;
+  }
+#endif /* SPEC_COUNTS */
+
   for (i = 0; i < size; ++i) counts[i] = 0;
 
   if (!ip)
@@ -272,13 +282,21 @@ spint_t spec_redistribute_counts_type = SPEC_REDISTRIBUTE_COUNTS_DEFAULT;
 spint_t spec_redistribute_counts_proclists_type = SPEC_REDISTRIBUTE_COUNTS_PROCLISTS_DEFAULT;
 
 
-spint_t spec_redistribute_counts(int *scounts, int *rcounts,
+spint_t spec_redistribute_counts(spec_tproc_t tproc, int *scounts, int *rcounts,
 #ifdef SPEC_PROCLISTS
   spint_t nsend_procs, sproc_t *send_procs, spint_t nrecv_procs, sproc_t *recv_procs,
 #endif
   int size, int rank, MPI_Comm comm) /* sp_func spec_redistribute_counts */
 {
   Z_TRACE_IF(SPEC_COMMON_TRACE_IF, "spec_redistribute_counts");
+
+#ifdef SPEC_COUNTS
+  if (tproc->recv_counts)
+  {
+    memcpy(rcounts, tproc->recv_counts, size * sizeof(int));
+    return 0;
+  }
+#endif /* SPEC_COUNTS */
 
 #ifdef HAVE_ZMPI_ALLTOALL_INT
 

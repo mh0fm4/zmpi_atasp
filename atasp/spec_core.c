@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2012, 2013, 2014, 2015, 2016 Michael Hofmann, Chemnitz University of Technology
+ *  Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Michael Hofmann, Chemnitz University of Technology
  *  
  *  This file is part of the ZMPI All-to-all Specific Library.
  *  
@@ -29,6 +29,7 @@
 
 
 #if defined(Z_PACK_TIMING) && defined(SPEC_TIMING)
+int nspec_timings = 0; /* sp_var nspec_timings */
 double *spec_timing = NULL; /* sp_var spec_timing */
 #endif
 
@@ -151,6 +152,11 @@ spint_t spec_tproc_create(spec_tproc_t *tproc, spec_tproc_f *func, spec_tproc_mo
   (*tproc)->recv_procs = NULL;
 #endif
 
+#ifdef SPEC_COUNTS
+  (*tproc)->send_counts = NULL;
+  (*tproc)->recv_counts = NULL;
+#endif
+
   return SPEC_EXIT_SUCCESS;
 }
 
@@ -159,6 +165,10 @@ spint_t spec_tproc_destroy(spec_tproc_t *tproc) /* sp_func spec_tproc_destroy */
 {
 #ifdef SPEC_PROCLISTS
   spec_tproc_set_proclists(*tproc, -1, NULL, -1, NULL, 0, -1, MPI_COMM_NULL);
+#endif
+
+#ifdef SPEC_COUNTS
+  spec_tproc_set_counts(*tproc, NULL, NULL, 0, -1, MPI_COMM_NULL);
 #endif
 
   z_free(*tproc);
@@ -353,6 +363,33 @@ spint_t spec_tproc_set_proclists(spec_tproc_t tproc, spint_t nsend_procs, sproc_
 }
 
 #endif
+
+#ifdef SPEC_COUNTS
+
+spint_t spec_tproc_set_counts(spec_tproc_t tproc, int *send_counts, int *recv_counts, int size, int rank, MPI_Comm comm)
+{
+  if (tproc->send_counts) z_free(tproc->send_counts);
+  if (tproc->recv_counts) z_free(tproc->recv_counts);
+
+  tproc->send_counts = NULL;
+  tproc->recv_counts = NULL;
+
+  if (send_counts)
+  {
+    tproc->send_counts = z_alloc(size, sizeof(int));
+    memcpy(tproc->send_counts, send_counts, size * sizeof(int));
+  }
+
+  if (recv_counts)
+  {
+    tproc->recv_counts = z_alloc(size, sizeof(int));
+    memcpy(tproc->recv_counts, recv_counts, size * sizeof(int));
+  }
+
+  return SPEC_EXIT_SUCCESS;
+}
+
+#endif /* SPEC_COUNTS */
 
 
 spint_t spec_print(spec_tproc_t tproc, spec_tproc_data_t tproc_data, spec_elem_t *b) /* sp_func spec_print */

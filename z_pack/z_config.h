@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2012, 2013, 2014, 2015, 2016 Michael Hofmann, Chemnitz University of Technology
+ *  Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Michael Hofmann, Chemnitz University of Technology
  *  
  *  This file is part of the ZMPI All-to-all Specific Library.
  *  
@@ -22,7 +22,7 @@
 #define __Z_CONFIG_H__
 
 
-#ifndef HAVE_CONFIG_H
+#if !HAVE_CONFIG_H || Z_OVERRIDE_CONFIG_H
 
 /* C standard library */
 #define HAVE_ASSERT_H  1
@@ -67,6 +67,10 @@
 # define HAVE_UCHAR_H  1
 #endif
 
+/* UNIX features */
+#if __unix__
+# define HAVE_UNISTD_H  1
+#endif
 
 /* features of the GNU C Compiler */
 #ifdef __GNUC__
@@ -78,7 +82,7 @@
 # endif
 #endif
 
-
+/* IBM Blue Gene/P features */
 #ifdef __bgp__
 # define HAVE_SPI_KERNEL_INTERFACE_H  1
 # define HAVE_COMMON_BGP_PERSONALITY_H  1
@@ -86,14 +90,13 @@
 # define HAVE__BGP_PERSONALITY_T  1
 #endif
 
-
+/* IBM Blue Gene/Q features */
 #ifdef __bgq__
 # define HAVE_MPIX_H  1
 # define HAVE_MPIX_HARDWARE_T  1
 #endif
 
-
-#endif /* HAVE_CONFIG_H */
+#endif /* !HAVE_CONFIG_H || Z_OVERRIDE_CONFIG_H */
 
 
 #if !defined(HAVE_MPI_IN_PLACE) && !defined(IGNORE_MPI_IN_PLACE)
@@ -103,4 +106,4 @@
 #endif
 
 
-#endif
+#endif /* __Z_CONFIG_H__ */

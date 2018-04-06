@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2012, 2013, 2014, 2015, 2016 Michael Hofmann, Chemnitz University of Technology
+ *  Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Michael Hofmann, Chemnitz University of Technology
  *  
  *  This file is part of the ZMPI All-to-all Specific Library.
  *  
@@ -49,10 +49,11 @@
 #define z_mpi_remap_cart_topology  Z_FUNC(z_mpi_remap_cart_topology)
 #define z_mpi_get_cart_topology  Z_FUNC(z_mpi_get_cart_topology)
 #define z_mpi_get_grid4d  Z_FUNC(z_mpi_get_grid4d)
+#define z_mpi_get_hostname  Z_FUNC(z_mpi_get_hostname)
+#define z_mpi_get_library  Z_FUNC(z_mpi_get_library)
 #define z_notice_fstream  Z_VAR(z_notice_fstream)
 #define z_error_fstream  Z_VAR(z_error_fstream)
 #define z_debug_fstream  Z_VAR(z_debug_fstream)
-#define z_time_wtime  Z_FUNC(z_time_wtime)
 #define z_srandom_seed  Z_VAR(z_srandom_seed)
 #define z_srandom  Z_FUNC(z_srandom)
 #define z_random  Z_FUNC(z_random)

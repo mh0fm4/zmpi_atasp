@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2012, 2013, 2014, 2015, 2016 Michael Hofmann, Chemnitz University of Technology
+ *  Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Michael Hofmann, Chemnitz University of Technology
  *  
  *  This file is part of the ZMPI All-to-all Specific Library.
  *  
@@ -69,6 +69,7 @@ typedef spec_elem_index_t spidx_t;
 
 
 #if defined(Z_PACK_TIMING) && defined(SPEC_TIMING)
+extern int nspec_timings;
 extern double *spec_timing;
 #endif
 
@@ -95,6 +96,10 @@ typedef struct _spec_tproc_t
 #ifdef SPEC_PROCLISTS
   spint_t nsend_procs, nrecv_procs;
   sproc_t *send_procs, *recv_procs;
+#endif
+
+#ifdef SPEC_COUNTS
+  int *send_counts, *recv_counts;
 #endif
 
 } *spec_tproc_t;
@@ -124,6 +129,10 @@ spint_t spec_tproc_set_reset(spec_tproc_t tproc, spec_tproc_reset_f *reset);
 #ifdef SPEC_PROCLISTS
 void spec_make_recv_proclist(spint_t nsend_procs, sproc_t *send_procs, spint_t *nrecv_procs, sproc_t **recv_procs, int size, int rank, MPI_Comm comm);
 spint_t spec_tproc_set_proclists(spec_tproc_t tproc, spint_t nsend_procs, sproc_t *send_procs, spint_t nrecv_procs, sproc_t *recv_procs, int size, int rank, MPI_Comm comm);
+#endif
+
+#ifdef SPEC_COUNTS
+spint_t spec_tproc_set_counts(spec_tproc_t tproc, int *send_counts, int *recv_counts, int size, int rank, MPI_Comm comm);
 #endif
 
 spint_t spec_print(spec_tproc_t tproc, spec_tproc_data_t tproc_data, spec_elem_t *b);

@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2012, 2013, 2014, 2015, 2016 Michael Hofmann, Chemnitz University of Technology
+ *  Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Michael Hofmann, Chemnitz University of Technology
  *  
  *  This file is part of the ZMPI All-to-all Specific Library.
  *  
@@ -53,6 +53,7 @@
 #define ZMPI_Tproc_free  ZMPI_FUNC(ZMPI_Tproc_free)
 #define ZMPI_Tproc_set_neighbors  ZMPI_FUNC(ZMPI_Tproc_set_neighbors)
 #define ZMPI_Tproc_set_proclists  ZMPI_FUNC(ZMPI_Tproc_set_proclists)
+#define ZMPI_Tproc_set_counts  ZMPI_FUNC(ZMPI_Tproc_set_counts)
 #define ZMPI_Get_elements  ZMPI_FUNC(ZMPI_Get_elements)
 #define ZMPI_Alltoall_specific  ZMPI_FUNC(ZMPI_Alltoall_specific)
 #define ZMPI_Neighbor_alltoall_specific  ZMPI_FUNC(ZMPI_Neighbor_alltoall_specific)
