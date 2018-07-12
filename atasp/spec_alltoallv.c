@@ -91,7 +91,7 @@ spint_t spec_alltoallv_db(spec_elem_t *sb, spec_elem_t *rb, spec_elem_t *xb, spe
   /* make local counts */
   Z_TIMING_SYNC(comm); Z_TIMING_START(t[1]);
 
-  spec_make_counts(tproc, tproc_data, sb, 0, size, scounts, procs);
+  spec_make_counts(tproc, tproc_data, sb, 0, scounts, procs, size, rank);
 
   Z_TIMING_SYNC(comm); Z_TIMING_STOP(t[1]);
 
@@ -282,7 +282,7 @@ spint_t spec_alltoallv_ip(spec_elem_t *b, spec_elem_t *xb, spec_tproc_t tproc, s
   /* make local counts */
   Z_TIMING_SYNC(comm); Z_TIMING_START(t[1]);
 
-  spec_make_counts(tproc, tproc_data, b, 1, size, scounts, procs);
+  spec_make_counts(tproc, tproc_data, b, 1, scounts, procs, size, rank);
 
   Z_TIMING_SYNC(comm); Z_TIMING_STOP(t[1]);
 

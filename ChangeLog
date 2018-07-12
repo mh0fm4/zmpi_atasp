@@ -1,5 +1,11 @@
+2018-07-12
+
+  * Update z_pack tools
+  * Minor fix for setting of counts
+
 2018-04-06
 
+  * Update copyright year
   * Update z_pack tools
   * Add ZMPI_Tproc_set_counts to send and/or receive counts explicitely (i.e. if they are already known)
   * Fix renaming of ZMPI_Get_elements

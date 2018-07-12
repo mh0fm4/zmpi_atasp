@@ -141,7 +141,7 @@ int ZMPI_Tproc_set_proclists(ZMPI_Tproc tproc, int ndstprocs, int *dstprocs, int
 
 int ZMPI_Tproc_set_counts(ZMPI_Tproc tproc, int *sendcounts, int *recvcounts, MPI_Comm comm) /* zmpi_func ZMPI_Tproc_set_counts */
 {
-#ifdef SPEC_PROCLISTS
+#if defined(SPEC_PROCLISTS) && defined(SPEC_COUNTS)
   int comm_size, comm_rank;
 
   MPI_Comm_size(comm, &comm_size);

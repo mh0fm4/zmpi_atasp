@@ -118,7 +118,7 @@ spint_t spec_sendrecv_db(spec_elem_t *sb, spec_elem_t *rb, spec_elem_t *xb, spec
   /* make local counts */
   Z_TIMING_SYNC(comm); Z_TIMING_START(t[1]);
 
-  spec_make_counts(tproc, tproc_data, sb, 0, size, scounts, procs);
+  spec_make_counts(tproc, tproc_data, sb, 0, scounts, procs, size, rank);
 
   Z_TIMING_SYNC(comm); Z_TIMING_STOP(t[1]);
 

@@ -39,7 +39,7 @@ spint_t spec_check_buffer_size(spec_elem_t *b, spint_t min_size, spint_t allocat
 void spec_tproc_setup(spec_tproc_t tproc, spec_elem_t *b, spec_proc_t **procs, spec_elem_t **mods);
 void spec_tproc_release(spec_proc_t **procs, spec_elem_t **mods);
 
-spint_t spec_make_counts(spec_tproc_t tproc, spec_tproc_data_t tproc_data, spec_elem_t *b, int ip, int size, int *counts, spec_proc_t *procs);
+spint_t spec_make_counts(spec_tproc_t tproc, spec_tproc_data_t tproc_data, spec_elem_t *b, int ip, int *counts, spec_proc_t *procs, int size, int rank);
 
 extern spint_t spec_redistribute_counts_type, spec_redistribute_counts_proclists_type;
 

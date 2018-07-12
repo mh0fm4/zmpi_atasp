@@ -200,7 +200,7 @@ void spec_tproc_release(spec_proc_t **procs, spec_elem_t **mods) /* sp_func spec
 }
 
 
-spint_t spec_make_counts(spec_tproc_t tproc, spec_tproc_data_t tproc_data, spec_elem_t *b, int ip, int size, int *counts, spec_proc_t *procs) /* sp_func spec_make_counts */
+spint_t spec_make_counts(spec_tproc_t tproc, spec_tproc_data_t tproc_data, spec_elem_t *b, int ip, int *counts, spec_proc_t *procs, int size, int rank) /* sp_func spec_make_counts */
 {
   spint_t i;
 
